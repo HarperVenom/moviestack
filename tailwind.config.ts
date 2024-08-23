@@ -13,6 +13,9 @@ const config: Config = {
         "custom-primary2": "#120D2F",
         "custom-primary3": "#211c43",
         "custom-text": "#8787FB",
+        custom1: "#15153e",
+        "primary-brighter": "#0e0e28",
+        "primary-darker": "#080817",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

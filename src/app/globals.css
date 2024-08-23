@@ -5,6 +5,8 @@
 :root {
   --background: #15153e;
   --primary: #09091b;
+  --primary-brighter: #0d0d25;
+  --primary-darker: #080817;
   --text: #8787fb;
 }
 
@@ -13,7 +15,7 @@ body {
 }
 
 ::-webkit-scrollbar {
-  width: 1.2rem;
+  width: 1rem;
 }
 
 ::-webkit-scrollbar-track {

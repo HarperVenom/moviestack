@@ -15,7 +15,6 @@ export default function Footer() {
               Discord
             </Link>
           </span>
-          .
         </p>
         <Link href={"https://github.com/HarperVenom/moviestack"}>
           <GithubLogo />

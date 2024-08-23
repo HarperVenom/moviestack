@@ -31,7 +31,7 @@ export default function RootLayout({
           }}
         ></div>
         <NavBar />
-        <main className="max-w-[1000px] mx-auto grow flex flex-col">
+        <main className="w-full max-w-[1000px] mx-auto grow flex flex-col">
           {children}
         </main>
         <Footer />

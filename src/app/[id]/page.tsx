@@ -4,6 +4,7 @@ import UniverseHeader from "@/components/UniverseHeader";
 import { Metadata, ResolvingMetadata } from "next";
 import { cache } from "react";
 import { notFound } from "next/navigation";
+import Universe from "@/components/Universe";
 
 type Props = {
   params: { id: string };
@@ -41,13 +42,17 @@ export async function generateMetadata(
   };
 }
 
-export default async function Universe({ params }: { params: { id: string } }) {
+export default async function UniversePage({
+  params,
+}: {
+  params: { id: string };
+}) {
   const universe = await getUniverse(params.id);
   const titles = await fetchTitles(params.id);
 
   return (
     <TitlesProvider universe={universe} titles={titles}>
-      <UniverseHeader />
+      <Universe />
     </TitlesProvider>
   );
 }

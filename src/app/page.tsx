@@ -1,4 +1,4 @@
-import Universe from "@/components/Universe";
+import UniverseLink from "@/components/UniverseLink";
 import { fetchUniverses } from "../lib/data";
 
 export default async function Home() {
@@ -22,7 +22,7 @@ export default async function Home() {
           Choose a universe:
         </h3>
         {universes.map((universe) => (
-          <Universe key={universe.id} data={universe} />
+          <UniverseLink key={universe.id} data={universe} />
         ))}
       </div>
     </main>

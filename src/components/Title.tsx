@@ -28,17 +28,18 @@ const rightBlindZoneWidth = checkWidth;
 export default function Title({
   data,
   position,
+  width,
 }: {
   data: TitleType;
-  scale?: number;
   position: number;
+  width: number;
 }) {
   const { completed, checkTitle } = useContext(TitlesContext);
   const [isCompleted, setIsCompleted] = useState(completed.includes(data.id));
 
-  const windowSize = useScreenSize();
-  const size = windowSize > 800 ? 800 : windowSize;
-  const scale = (0.9 * size) / initialWidth;
+  // const windowSize = useScreenSize();
+  const size = width > 800 ? 800 : width;
+  const scale = size / initialWidth;
 
   const { containerRef, cardRef, setActive } = useCardTilt();
 
@@ -56,8 +57,8 @@ export default function Title({
       ref={containerRef}
       className="relative"
       style={{
-        width: `${0.9 * size}px`,
-        height: `${(0.9 * size) / 4}px`,
+        width: `${size}px`,
+        height: `${size / 4}px`,
         transform: `scale(${isCompleted ? 0.99 : 1})`,
         filter: `brightness(${isCompleted ? 0.5 : 1})`,
         transition: "transform 0.6s ease, filter 0.6s ease",
@@ -81,7 +82,7 @@ export default function Title({
           {/* BANNER */}
           <Image
             className={`${
-              isCompleted ? "brightness-75" : "brightness-100"
+              isCompleted ? "brightness-75" : "brightness-95"
             } transition-all absolute top-0 left-0 w-full h-full z-[-1] select-none saturate-[1.3]`}
             src={data.banner_url}
             alt=""
