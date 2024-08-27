@@ -38,7 +38,7 @@ export default function Title({
   const [isCompleted, setIsCompleted] = useState(completed.includes(data.id));
 
   // const windowSize = useScreenSize();
-  const size = width > 800 ? 800 : width;
+  const size = width > 600 ? 600 : width;
   const scale = size / initialWidth;
 
   const { containerRef, cardRef, setActive } = useCardTilt();

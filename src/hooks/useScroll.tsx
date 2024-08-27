@@ -1,4 +1,3 @@
-import { dir } from "console";
 import { useEffect, useState } from "react";
 
 export function useScroll() {
