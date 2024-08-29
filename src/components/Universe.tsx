@@ -4,14 +4,14 @@ import SideBar from "./SideBar";
 
 export default function Universe() {
   return (
-    <div className="flex gap-8 mx-4 my-8">
-      <div className="flex-grow max-w-[400px] hidden lg:flex">
-        <SideBar></SideBar>
+    <main className="flex py-8 md:px-8 relative mb-[25vh]">
+      <div className="w-[40%] hidden md:block pr-8">
+        <SideBar />
       </div>
 
-      <div className="w-full max-w-[600px] m-auto">
+      <div className="w-[90%] max-w-[800px] md:w-[60%] m-auto">
         <TitleList />
       </div>
-    </div>
+    </main>
   );
 }

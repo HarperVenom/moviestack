@@ -6,40 +6,31 @@ import { useScroll } from "@/hooks/useScroll";
 import Logo from "./Logo";
 
 export default function NavBar() {
-  const { scroll, scrollTop } = useScroll();
-  const showNav = scroll < 0 || scrollTop < 100;
-
   return (
-    <div className="w-full h-full">
-      <div className="h-20">
-        <div
-          className="transition-all z-[1] fixed w-full h-20 bg-custom-primary3 
-        mix-blend-multiply opacity-80 "
-          style={{
-            transform: `translateY(${showNav ? 0 : -100}%)`,
-            transitionDuration: "0.2s",
-          }}
-        ></div>
-        <div
-          className="z-[1] transition-all fixed h-20 w-full left-1/2 translate-x-[-50%] backdrop-blur-sm"
-          style={{
-            transform: `translate(-50%,${showNav ? 0 : -100}%)`,
-            transitionDuration: "0.2s",
-          }}
-        >
-          <div
-            className="z-[1] h-20 max-w-[1000px] mx-auto w-screen  
+    <div className="top-0 h-16 w-full">
+      {/* Background */}
+      <div
+        className="fixed z-[1] left-0 w-full h-16 
+        bg-custom-primary3 mix-blend-multiply opacity-90"
+      />
+      {/* Blur */}
+      <div
+        className="fixed z-[1] left-0 w-full h-16 
+      "
+        style={{ backdropFilter: "blur(10px)" }}
+      />
+
+      <nav
+        className="fixed z-[1] h-16 w-full max-w-[1000px] mx-auto  
          flex items-center gap-1 px-4"
-          >
-            <Link className="flex items-center cursor-pointer" href={"/"}>
-              <Logo />
-              <h1 className="text-custom-text font-black text-xl">
-                MovieStack
-              </h1>
-            </Link>
-          </div>
-        </div>
-      </div>
+      >
+        <Link className="flex items-center cursor-pointer" href={"/"}>
+          <Logo />
+          <h1 className="text-custom-text font-bold text-[1.2rem]">
+            MovieStack
+          </h1>
+        </Link>
+      </nav>
     </div>
   );
 }

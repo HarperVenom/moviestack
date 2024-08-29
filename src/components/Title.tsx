@@ -38,41 +38,40 @@ export default function Title({
   const [isCompleted, setIsCompleted] = useState(completed.includes(data.id));
 
   // const windowSize = useScreenSize();
-  const size = width > 600 ? 600 : width;
+  const size = width;
   const scale = size / initialWidth;
 
-  const { containerRef, cardRef, setActive } = useCardTilt();
+  // const { containerRef, cardRef, setActive } = useCardTilt();
 
   useEffect(() => {
     setIsCompleted(completed.includes(data.id));
   }, [completed, data.id]);
 
-  useEffect(() => {
-    setActive(!isCompleted);
-  }, [isCompleted, setActive]);
+  // useEffect(() => {
+  //   setActive(!isCompleted);
+  // }, [isCompleted, setActive]);
 
   return (
     // CONTAINER
     <div
-      ref={containerRef}
+      // ref={containerRef}
       className="relative"
       style={{
         width: `${size}px`,
         height: `${size / 4}px`,
-        transform: `scale(${isCompleted ? 0.99 : 1})`,
         filter: `brightness(${isCompleted ? 0.5 : 1})`,
         transition: "transform 0.6s ease, filter 0.6s ease",
       }}
     >
       {/* TILTING CONTAINER */}
       <div
-        ref={cardRef}
-        className="w-full h-full"
-        style={{ boxShadow: `0 0 ${isCompleted ? 5 : 20}px black` }}
+        // ref={cardRef}
+        className="w-full h-full shadow-lg  overflow-hidden"
+        // style={{ boxShadow: `0 0 ${isCompleted ? 5 : 10}px rgb(0,0,0,0.5)` }}
       >
         {/* SCALED CARD */}
         <div
-          className="text-white left-1/2 top-1/2 overflow-hidden absolute shadow-2xl flex items-center font-bold"
+          className="text-white left-1/2 top-1/2 rounded-md overflow-hidden absolute shadow-2xl flex items-center font-bold"
           style={{
             width: `${initialWidth}px`,
             height: `${initialHeight}px`,
@@ -82,8 +81,11 @@ export default function Title({
           {/* BANNER */}
           <Image
             className={`${
-              isCompleted ? "brightness-75" : "brightness-95"
-            } transition-all absolute top-0 left-0 w-full h-full z-[-1] select-none saturate-[1.3]`}
+              isCompleted
+                ? "brightness-75 grayscale"
+                : "brightness-95 grayscale-0"
+            } transition-all absolute top-0 left-0 w-full h-full 
+            z-[-1] select-none saturate-[1.3] `}
             src={data.banner_url}
             alt=""
             width={initialWidth * scale * 2}
@@ -95,18 +97,6 @@ export default function Title({
             }}
           ></Image>
 
-          {/* BLACK MASK */}
-          <div
-            className="mix-blend-color transition-all pointer-events-none top-1/2 left-0 absolute rounded-full bg-black w-full h-full"
-            style={{
-              width: initialWidth,
-              height: initialWidth,
-              transform: `translate(${
-                isCompleted ? 0 : 105
-              }%, ${-50}%) scale(1.1)`,
-              transitionDuration: "0.8s",
-            }}
-          ></div>
           {/* LEFT TEXT FADE */}
           <div
             className="absolute z-[-1]"
@@ -167,7 +157,7 @@ export default function Title({
             style={{ width: `${checkWidth}px` }}
           >
             <button
-              className="outline outline-offset-[-3px] outline-[3px] border-white 
+              className="outline outline-offset-[-3px] rounded-md outline-[3px] border-white 
       border-w cursor-pointer relative"
               style={{
                 width: `${squareWidth}px`,
@@ -182,7 +172,7 @@ export default function Title({
                 style={{ transitionDuration: "0.5s" }}
               >
                 <div
-                  className={`w-full h-full transition-all`}
+                  className={`w-full h-full transition-all flex justify-center items-end`}
                   style={{
                     width: `${squareWidth}px`,
                     height: `${squareWidth}px`,
