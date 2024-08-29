@@ -9,8 +9,6 @@ import {
   getTitleFontSize,
 } from "@/utils/calculateFontSize";
 import { getYear } from "@/utils/getYear";
-import { useScreenSize } from "@/hooks/useScreenSize";
-import { useCardTilt } from "@/hooks/useCardTilt";
 import { formatTime } from "@/utils/convertTime";
 import { TitlesContext } from "@/services/providers/TitlesProvider";
 
@@ -37,25 +35,17 @@ export default function Title({
   const { completed, checkTitle } = useContext(TitlesContext);
   const [isCompleted, setIsCompleted] = useState(completed.includes(data.id));
 
-  // const windowSize = useScreenSize();
   const size = width;
   const scale = size / initialWidth;
-
-  // const { containerRef, cardRef, setActive } = useCardTilt();
 
   useEffect(() => {
     setIsCompleted(completed.includes(data.id));
   }, [completed, data.id]);
 
-  // useEffect(() => {
-  //   setActive(!isCompleted);
-  // }, [isCompleted, setActive]);
-
   return (
     // CONTAINER
     <div
-      // ref={containerRef}
-      className="relative"
+      className="relative rounded-md overflow-hidden shadow-lg"
       style={{
         width: `${size}px`,
         height: `${size / 4}px`,
@@ -64,14 +54,10 @@ export default function Title({
       }}
     >
       {/* TILTING CONTAINER */}
-      <div
-        // ref={cardRef}
-        className="w-full h-full shadow-lg  overflow-hidden"
-        // style={{ boxShadow: `0 0 ${isCompleted ? 5 : 10}px rgb(0,0,0,0.5)` }}
-      >
+      <div className="w-full h-full overflow-hidden">
         {/* SCALED CARD */}
         <div
-          className="text-white left-1/2 top-1/2 rounded-md overflow-hidden absolute shadow-2xl flex items-center font-bold"
+          className="text-white left-1/2 top-1/2 overflow-hidden absolute shadow-2xl flex items-center font-bold"
           style={{
             width: `${initialWidth}px`,
             height: `${initialHeight}px`,
@@ -157,7 +143,7 @@ export default function Title({
             style={{ width: `${checkWidth}px` }}
           >
             <button
-              className="outline outline-offset-[-3px] rounded-md outline-[3px] border-white 
+              className="outline outline-offset-[-3px] rounded-sm outline-[3px] border-white 
       border-w cursor-pointer relative"
               style={{
                 width: `${squareWidth}px`,
