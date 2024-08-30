@@ -21,8 +21,8 @@ export default function NavBar() {
       />
 
       <nav
-        className="fixed z-[1] h-16 w-full max-w-[1000px] mx-auto  
-         flex items-center gap-1 px-4"
+        className="fixed z-[1] h-16 w-full max-w-[1100px] mx-auto  
+         flex items-center gap-1 px-4 left-1/2 -translate-x-1/2"
       >
         <Link className="flex items-center cursor-pointer" href={"/"}>
           <Logo />

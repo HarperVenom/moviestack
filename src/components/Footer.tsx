@@ -4,13 +4,12 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <div className="text-sm p-8 gap-4 backdrop-blur-sm text-custom-text relative">
-      <div className="opacity-80 left-0 top-0 z-[-1] mix-blend-multiply bg-custom-primary absolute w-full h-full"></div>
+    <div className="bg-custom-primary text-sm p-8 gap-4 backdrop-blur-sm text-custom-text mt-auto">
       <div className="max-w-[1000px] flex flex-col gap-4 justify-between items-center m-auto">
         <p className="max-w-[400px] text-center text-balance">
           Have any thoughts or ideas about the website? Want to contribute?
-          Message me on{" "}
-          <span className="underline">
+          Message me on
+          <span className="underline ml-1">
             <Link href="https://discordapp.com/users/414710497758281738">
               Discord
             </Link>
@@ -22,5 +21,9 @@ export default function Footer() {
         <p>©MovieStack</p>
       </div>
     </div>
+    // <div className="text-sm p-8 gap-4 backdrop-blur-sm text-custom-text relative mt-auto">
+    //   <div className="opacity-80 left-0 top-0 z-[-1] mix-blend-multiply bg-custom-primary absolute w-full h-full"></div>
+    //
+    // </div>
   );
 }
