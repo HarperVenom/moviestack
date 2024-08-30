@@ -1,6 +1,6 @@
 "use client";
 import { TitlesContext } from "@/services/providers/TitlesProvider";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 
 export default function FilterList() {
   const {
@@ -10,20 +10,39 @@ export default function FilterList() {
     bannedTypeFilters,
     checkFilter,
     switchAllFilters,
+    titles,
   } = useContext(TitlesContext);
 
   return (
-    <div className="font-medium select-none text-center py-8 border-b border-custom-text">
-      <div className="mb-8">
+    <div className="text-white flex flex-col gap-4">
+      <div className="flex justify-between font-black">
+        <h2>Filters</h2>
+        <div className="flex gap-2">
+          <button
+            className="cursor-pointer hover:underline"
+            onClick={() => switchAllFilters(true)}
+          >
+            Show All
+          </button>
+          /
+          <button
+            className="cursor-pointer hover:underline"
+            onClick={() => switchAllFilters(false)}
+          >
+            Hide All
+          </button>
+        </div>
+      </div>
+
+      <div>
+        <h3 className="mb-2 font-medium">Type</h3>
         {typeFilters.map((filter, i) => (
           <button
             key={i}
             className={`${
-              bannedTypeFilters.includes(filter)
-                ? "scale-95 opacity-40"
-                : "scale-100 opacity-100"
-            } hover:text-white font-medium text-[0.7rem] sm:text-[1rem] hover:border-white cursor-pointer select-none
-           text-custom-text inline-block px-2 py-1 m-[0.2rem] border-[1.5px] border-custom-text`}
+              bannedTypeFilters.includes(filter) ? "opacity-40" : "opacity-100"
+            } bg-[var(--blue5)] text-[var(--white1)] rounded text-[0.9rem] cursor-pointer
+            inline-block px-2 py-[0.2rem] m-[0.2rem]`}
             style={{
               transition: "opacity 0.2s ease, transform 0.2s ease",
             }}
@@ -34,39 +53,26 @@ export default function FilterList() {
         ))}
       </div>
 
-      <div className="flex text-custom-text justify-center gap-2 pb-2 mb-8 border-b border-custom-text">
-        <button
-          className="hover:underline w-fit cursor-pointer"
-          onClick={() => switchAllFilters(true)}
-        >
-          SHOW ALL
-        </button>
-        /
-        <button
-          className="hover:underline w-fit cursor-pointer"
-          onClick={() => switchAllFilters(false)}
-        >
-          HIDE ALL
-        </button>
+      <div>
+        <h3 className="mb-2 font-medium">Characters</h3>
+        {branchFilters.map((filter, i) => (
+          <button
+            key={i}
+            className={`${
+              bannedBranchFilters.includes(filter)
+                ? "opacity-30"
+                : "opacity-100 "
+            } bg-[var(--blue5)] text-[var(--white1)] rounded text-[0.9rem] cursor-pointer
+            inline-block px-2 py-[0.2rem] m-[0.2rem]`}
+            style={{
+              transition: "opacity 0.2s ease, transform 0.2s ease",
+            }}
+            onClick={() => checkFilter(filter, "branch")}
+          >
+            {filter}
+          </button>
+        ))}
       </div>
-
-      {branchFilters.map((filter, i) => (
-        <button
-          key={i}
-          className={`${
-            bannedBranchFilters.includes(filter)
-              ? "scale-95 opacity-40"
-              : "scale-100 opacity-100"
-          } hover:text-white font-medium text-[0.7rem] sm:text-[1rem] hover:border-white cursor-pointer select-none
-           text-custom-text inline-block px-2 py-1 m-[0.2rem] border-[1.5px] border-custom-text`}
-          style={{
-            transition: "opacity 0.2s ease, transform 0.2s ease",
-          }}
-          onClick={() => checkFilter(filter, "branch")}
-        >
-          {filter}
-        </button>
-      ))}
     </div>
   );
 }

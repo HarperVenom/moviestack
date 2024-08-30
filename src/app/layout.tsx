@@ -22,15 +22,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${roboto.className} flex flex-col min-h-svh max-w-[1200px] w-full mx-auto overflow-x-hidden`}
+        className={`${roboto.className} flex flex-col min-h-svh max-w-[1100px] w-full mx-auto overflow-x-hidden`}
       >
-        {/* <div
-          className="opacity-30 brightness-200 fixed left-0 w-screen h-screen z-[-1] saturate-[0.3]"
-          style={{
-            backgroundImage: `url(https://www.toptal.com/designers/subtlepatterns/uploads/circle-blues.png)`,
-          }}
-        ></div> */}
-
         <NavBar />
         {children}
         <Footer />
