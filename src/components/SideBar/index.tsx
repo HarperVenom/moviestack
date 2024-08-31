@@ -5,6 +5,7 @@ import { TitlesContext } from "@/services/providers/TitlesProvider";
 import { calculateTotalDuration } from "@/utils/calculateTotalDuration";
 import "./styles.css";
 import FilterList from "../FilterList";
+import SortingSwitch from "../SortingSwitch";
 
 export default function SideBar() {
   const {
@@ -31,7 +32,7 @@ export default function SideBar() {
           ></Image>
 
           <div className="small-scroll overflow-auto overscroll-none">
-            <div className="flex flex-col p-4 gap-4">
+            <div className="flex flex-col px-2 py-4 gap-4">
               <div className="bg-[var(--blue4)] p-4 rounded-md">
                 <div className="text-white font-black text-[1.3rem] w-full flex flex-col mb-4">
                   {universe.title}
@@ -45,32 +46,11 @@ export default function SideBar() {
                 <FilterList />
               </div>
 
-              {/* <div className="w-full text-white flex flex-col items-center">
-              <button
-                className="text-2xl text-custom-text border-custom-text py-[1rem]"
-                style={{
-                  background:
-                    "linear-gradient(to right, var(--background), transparent)",
-                  boxShadow: "0 0 10px rgb(0,0,0,0.8)",
-                }}
-              >
-                FILTER
-              </button>
-              <button
-                className="mb-4 text-2xl text-custom-text border-custom-text py-[1rem]"
-                style={{
-                  background:
-                    "linear-gradient(to left, var(--background), transparent)",
-                  boxShadow: "0 0 10px rgb(0,0,0,0.8)",
-                }}
-              >
-                [RELEASE ORDER]
-              </button>
+              <div className="bg-[var(--blue4)] p-4 rounded-md cursor-default select-none">
+                <SortingSwitch />
+              </div>
 
-              <div
-                className="w-full flex flex-col items-center border-custom-text"
-                // style={{ boxShadow: "0 0 10px rgb(0,0,0,0.5) inset" }}
-              >
+              {/* <div className="w-full flex flex-col items-center border-custom-text">
                 <h2 className="text-custom-text w-full border-custom-text opacity-80">
                   TOTAL NUMBER OF TITLES:
                 </h2>
@@ -79,10 +59,7 @@ export default function SideBar() {
                 </div>
               </div>
 
-              <div
-                className="w-full flex flex-col items-center border-custom-text"
-                // style={{ boxShadow: "0 0 10px rgb(0,0,0,0.5) inset" }}
-              >
+              <div className="w-full flex flex-col items-center border-custom-text">
                 <h2 className="text-custom-text w-full border-custom-text opacity-80">
                   TOTAL DURATION:
                 </h2>
@@ -97,8 +74,22 @@ export default function SideBar() {
                 onClick={resetTitles}
               >
                 RESET THE PROGRESS
-              </button> */}
-              {/* </div> */}
+              </button>*/}
+            </div>
+          </div>
+          <div
+            className="bg-[var(--blue4)] p-4 text-white font-black flex flex-col items-center gap-4"
+            style={{
+              boxShadow: "0 0 20px rgb(0,0,0,0.3)",
+            }}
+          >
+            <div className="flex items-baseline gap-1 text-[1.1rem]">
+              <h2 className="text-center text-[var(--white1)] font-medium">
+                Total duration:
+              </h2>
+              <span className="text-[1.5rem]">
+                {calculateTotalDuration(filteredtitles)}
+              </span>
             </div>
           </div>
         </aside>

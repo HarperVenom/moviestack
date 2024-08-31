@@ -8,6 +8,7 @@
   --blue3: #23213d;
   --blue4: #282849;
   --blue5: #4b4a8a;
+  --blue6: #545298;
 
   --white1: rgb(197, 191, 234);
 
@@ -34,4 +35,8 @@ body {
   background-color: #3c3a69;
   /* border-radius: 20px; */
   border: var(--primary) 2px solid;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--blue6);
 }

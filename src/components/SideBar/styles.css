@@ -1,6 +1,6 @@
-/* .sidebar {
+.small-scroll {
   scrollbar-gutter: stable both-edges;
-} */
+}
 
 .small-scroll::-webkit-scrollbar {
   width: 0.5rem;
