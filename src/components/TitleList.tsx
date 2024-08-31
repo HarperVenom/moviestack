@@ -27,7 +27,7 @@ export default function TitleList() {
   return (
     <div
       ref={containerRef}
-      className="flex flex-col w-full ml-auto mb-[50vh]"
+      className="flex flex-col w-full mb-[50vh]"
       style={{
         gap: "clamp(0.5rem,5vw,2rem)",
       }}

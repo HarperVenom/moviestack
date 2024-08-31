@@ -4,7 +4,7 @@ import { fetchUniverses } from "../lib/data";
 export default async function Home() {
   const universes = await fetchUniverses();
   return (
-    <main className="text-white pb-[50svh] py-4">
+    <main className="w-full text-white pb-[50svh] py-4">
       <div className=" grid place-content-center p-4">
         <h1 className="text-[1.5rem] sm:text-[2rem] font-black text-center">
           Explore Cinematic Universes

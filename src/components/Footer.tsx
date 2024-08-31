@@ -21,9 +21,5 @@ export default function Footer() {
         <p>©MovieStack</p>
       </div>
     </div>
-    // <div className="text-sm p-8 gap-4 backdrop-blur-sm text-custom-text relative mt-auto">
-    //   <div className="opacity-80 left-0 top-0 z-[-1] mix-blend-multiply bg-custom-primary absolute w-full h-full"></div>
-    //
-    // </div>
   );
 }
