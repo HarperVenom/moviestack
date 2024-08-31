@@ -9,6 +9,7 @@ import SortingSwitch from "../SortingSwitch";
 
 export default function SideBar() {
   const {
+    completed,
     universe,
     filteredTitles: filteredtitles,
     resetTitles,
@@ -49,38 +50,12 @@ export default function SideBar() {
               <div className="bg-[var(--blue4)] p-4 rounded-md cursor-default select-none">
                 <SortingSwitch />
               </div>
-
-              {/* <div className="w-full flex flex-col items-center border-custom-text">
-                <h2 className="text-custom-text w-full border-custom-text opacity-80">
-                  TOTAL NUMBER OF TITLES:
-                </h2>
-                <div className="text-[2rem] font-black text-center py-2">
-                  {filteredtitles.length}
-                </div>
-              </div>
-
-              <div className="w-full flex flex-col items-center border-custom-text">
-                <h2 className="text-custom-text w-full border-custom-text opacity-80">
-                  TOTAL DURATION:
-                </h2>
-                <div className="m-auto text-[1.6rem] font-black text-center py-2">
-                  {calculateTotalDuration(filteredtitles)}
-                </div>
-              </div>
-
-              <button
-                className="font-bold text-custom-text hover:underline 
-      ml-auto mr-4 "
-                onClick={resetTitles}
-              >
-                RESET THE PROGRESS
-              </button>*/}
             </div>
           </div>
           <div
-            className="bg-[var(--blue4)] p-4 text-white font-black flex flex-col items-center gap-4"
+            className="bg-[var(--blue4)] p-4 px-8 text-white font-black flex flex-col items-center gap-4"
             style={{
-              boxShadow: "0 0 20px rgb(0,0,0,0.3)",
+              boxShadow: "0 0 20px rgb(0,0,0,0.5)",
             }}
           >
             <div className="flex items-baseline gap-1 text-[1.1rem]">
@@ -91,6 +66,21 @@ export default function SideBar() {
                 {calculateTotalDuration(filteredtitles)}
               </span>
             </div>
+            <div className="h-3 w-full bg-[var(--blue6)] rounded-full overflow-hidden">
+              <div
+                className="h-full bg-white transition-all"
+                style={{
+                  transitionDuration: "0.5s",
+                  width: `${(completed.length / filteredtitles.length) * 100}%`,
+                }}
+              ></div>
+            </div>
+            <button
+              className="font-normal opacity-50 text-[var(--white1)] hover:underline hover:opacity-100"
+              onClick={resetTitles}
+            >
+              Reset the progress
+            </button>
           </div>
         </aside>
       )}
