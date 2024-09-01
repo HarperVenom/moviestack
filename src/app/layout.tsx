@@ -22,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${roboto.className} min-h-svh w-full overflow-x-hidden`}
+        className={`${roboto.className} min-h-svh w-full overflow-x-hidden flex flex-col`}
       >
         <NavBar />
         {children}

@@ -3,12 +3,12 @@
 @tailwind utilities;
 
 :root {
-  --blue1: #1a1a30;
+  --blue1: #141435;
   /* --blue2: #0f0f2b; */
-  --blue3: #23213d;
-  --blue4: #282849;
-  --blue5: #4b4a8a;
-  --blue6: #545298;
+  --blue3: #202054;
+  --blue4: #2c2c70;
+  --blue5: #413f9e;
+  --blue6: #4a47ac;
 
   --white1: rgb(197, 191, 234);
 
@@ -32,7 +32,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #3c3a69;
+  background-color: #333076;
   /* border-radius: 20px; */
   border: var(--primary) 2px solid;
 }

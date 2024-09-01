@@ -5,12 +5,12 @@ export default function SortingSwitch() {
   return (
     <div className="text-[var(--white1)] flex flex-col gap-4">
       <h2 className="font-black">Sorting</h2>
-      <div
+      <button
         className="bg-[var(--blue5)] font-medium text-[var(--white1)] rounded cursor-pointer
             inline-block px-2 py-[0.5rem] m-[0.2rem] text-center"
       >
         By Release Order
-      </div>
+      </button>
     </div>
   );
 }

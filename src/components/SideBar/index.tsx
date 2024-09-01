@@ -43,7 +43,7 @@ export default function SideBar() {
                 </div>
               </div>
 
-              <div className="bg-[var(--blue4)] p-4 rounded-md cursor-default select-none">
+              <div className="bg-[var(--blue4)] rounded-md cursor-default select-none">
                 <FilterList />
               </div>
 
