@@ -18,8 +18,6 @@ export default function FilterList() {
 
   function handleOpenMenu() {
     if (!contentRef.current) return;
-    console.log(contentRef.current.getBoundingClientRect().height);
-
     setMenuOpened((prev) => !prev);
   }
 
@@ -30,12 +28,20 @@ export default function FilterList() {
         onClick={handleOpenMenu}
       >
         <h2>Filters</h2>
-        <div className="bg-[var(--white1)] w-4 h-[3px] rounded-full" />
+        <div className="h-4 aspect-square relative">
+          <div className="top-1/2 -translate-y-1/2 absolute bg-[var(--white1)] w-full h-[2.5px] rounded-full" />
+          <div
+            className={`${
+              menuOpened ? "opacity-0" : "opacity-100"
+            } transition-all left-1/2 -translate-x-1/2 absolute bg-[var(--white1)] w-[2.5px] h-full rounded-full`}
+          />
+        </div>
       </button>
 
       <div
         className="overflow-hidden transition-all"
         style={{
+          transitionDuration: "0.5s",
           maxHeight: menuOpened
             ? `${contentRef.current?.getBoundingClientRect().height}px`
             : "0px",
@@ -55,7 +61,7 @@ export default function FilterList() {
                     ? "opacity-40"
                     : "opacity-100"
                 } bg-[var(--blue5)] font-medium text-[var(--white1)] rounded text-[0.9rem] cursor-pointer
-            inline-block px-2 py-[0.2rem] m-[0.2rem]`}
+            inline-block px-2 py-[0.2rem] m-[0.2rem] hover:brightness-125`}
                 style={{
                   transition: "opacity 0.2s ease, transform 0.2s ease",
                 }}
@@ -94,7 +100,7 @@ export default function FilterList() {
                     ? "opacity-30"
                     : "opacity-100 "
                 } bg-[var(--blue5)] font-medium text-[var(--white1)] rounded text-[0.9rem] cursor-pointer
-            inline-block px-2 py-[0.2rem] m-[0.2rem]`}
+            inline-block px-2 py-[0.2rem] m-[0.2rem] hover:brightness-125`}
                 style={{
                   transition: "opacity 0.2s ease, transform 0.2s ease",
                 }}

@@ -19,9 +19,8 @@ export default function SideBar() {
     <>
       {universe && (
         <aside
-          className={`self-start sticky top-24 flex flex-col h-fit
+          className={`self-start sticky top-24 flex flex-col h-full
             shadow-lg rounded-md overflow-hidden bg-[var(--blue3)]`}
-          style={{ maxHeight: "calc(100vh - 8rem)" }}
         >
           <Image
             className="saturate-[1.3] shadow-xl"
@@ -32,7 +31,7 @@ export default function SideBar() {
             quality={100}
           ></Image>
 
-          <div className="small-scroll overflow-auto overscroll-none">
+          <div className="grow small-scroll overflow-auto overscroll-none">
             <div className="flex flex-col px-2 py-4 gap-4">
               <div className="bg-[var(--blue4)] p-4 rounded-md">
                 <div className="text-white font-black text-[1.3rem] w-full flex flex-col mb-4">
@@ -47,25 +46,26 @@ export default function SideBar() {
                 <FilterList />
               </div>
 
-              <div className="bg-[var(--blue4)] p-4 rounded-md cursor-default select-none">
+              <div className="bg-[var(--blue4)] rounded-md cursor-default select-none">
                 <SortingSwitch />
               </div>
             </div>
           </div>
+
           <div
             className="bg-[var(--blue4)] p-4 px-8 text-white font-black flex flex-col items-center gap-4"
             style={{
               boxShadow: "0 0 20px rgb(0,0,0,0.5)",
             }}
           >
-            <div className="flex items-baseline gap-1 text-[1.1rem]">
+            {/* <div className="flex items-baseline gap-1 text-[1.1rem]">
               <h2 className="text-center text-[var(--white1)] font-medium">
                 Total duration:
               </h2>
               <span className="text-[1.5rem]">
                 {calculateTotalDuration(filteredtitles)}
               </span>
-            </div>
+            </div> */}
             <div className="h-3 w-full bg-[var(--blue6)] rounded-full overflow-hidden">
               <div
                 className="h-full bg-white transition-all"

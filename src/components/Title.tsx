@@ -18,7 +18,7 @@ const initialHeight = 80;
 const positionWidth = 44;
 const titleWidth = 80;
 const checkWidth = 56;
-const squareWidth = 30;
+const squareWidth = 25;
 
 const leftBlindZoneWidth = positionWidth + titleWidth;
 const rightBlindZoneWidth = checkWidth;

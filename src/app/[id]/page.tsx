@@ -1,6 +1,5 @@
 import { fetchTitles, fetchUniverse, fetchUniverses } from "@/lib/data";
 import TitlesProvider from "../../services/providers/TitlesProvider";
-import UniverseHeader from "@/components/UniverseHeader";
 import { Metadata, ResolvingMetadata } from "next";
 import { cache } from "react";
 import { notFound } from "next/navigation";
