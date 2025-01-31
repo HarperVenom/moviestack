@@ -1,23 +1,86 @@
-import React from "react";
+"use client";
+
+import React, { useContext, useEffect, useState } from "react";
 import TitleList from "./TitleList";
 import SideBar from "./SideBar";
-import TopBar from "./TopBar";
+import Settings from "../../public/assets/settings";
+import { TitlesContext } from "@/services/providers/TitlesProvider";
 
 export default function Universe() {
+  const { completed, filteredTitles } = useContext(TitlesContext);
+  const [menuOpened, setMenuOpened] = useState(false);
+
+  const filteredCompleted = completed.filter((id) =>
+    filteredTitles.some((title) => title.id === id)
+  );
+
   return (
-    <main className="flex py-4 lg:px-8 relative w-full max-w-[1100px] mx-auto">
-      <div className="lg:block w-[40%] hidden pr-8">
-        <div className="sticky top-24" style={{ height: "calc(100vh - 8rem)" }}>
-          <SideBar />
-        </div>
+    <main className="flex-col relative w-full mx-auto">
+      <div
+        className="w-[90%] max-w-[700px] mx-auto relative"
+        style={{
+          marginTop: "min(calc((100% - 90%) / 2), 2rem)",
+          marginBottom: "calc((100% - 90%) / 2)",
+        }}
+      >
+        <TitleList />
       </div>
 
-      <div className="lg:w-[60%] w-[90%] max-w-[800px] mx-auto relative">
-        <div className="z-10 absolute top-0 left-0 h-full w-full pointer-events-none">
-          <TopBar />
+      {menuOpened ? (
+        <div className="fixed top-16 bottom-20 w-full p-2 max-w-[700px] left-1/2 -translate-x-1/2">
+          <SideBar />
         </div>
-        <div className="h-20 lg:hidden w-full "></div>
-        <TitleList />
+      ) : null}
+
+      <div
+        className="fixed bottom-0 w-full h-20 bg-custom-primary3
+      mix-blend-multiply opacity-90"
+      ></div>
+      <div
+        className="fixed bottom-0 w-full h-20 
+      "
+        style={{ backdropFilter: "blur(10px)" }}
+      >
+        <div
+          className="m-auto max-w-[600px] w-full h-full flex 
+        items-center p-3 px-4 justify-center gap-2"
+        >
+          <div
+            className="w-full h-full relative rounded overflow-hidden"
+            style={{ backgroundColor: "var(--blue3)" }}
+          >
+            <div
+              className="absolute h-full bg-white transition-all"
+              style={{
+                transitionDuration: "0.5s",
+                width: `${
+                  filteredTitles.length == 0
+                    ? 0
+                    : (filteredCompleted.length / filteredTitles.length) * 100
+                }%`,
+              }}
+            ></div>
+            <p
+              className="font-bold text-3xl w-full h-full
+          flex justify-center items-center mix-blend-difference"
+              style={{ color: "var(--white1)" }}
+            >
+              {`${Math.round(
+                filteredTitles.length == 0
+                  ? 0
+                  : (filteredCompleted.length / filteredTitles.length) * 100
+              )}%`}
+            </p>
+          </div>
+
+          <button
+            onClick={() => setMenuOpened(!menuOpened)}
+            className="h-full rounded aspect-square p-1"
+            style={{ backgroundColor: "var(--blue3)" }}
+          >
+            <Settings fill="var(--white1)" />
+          </button>
+        </div>
       </div>
     </main>
   );

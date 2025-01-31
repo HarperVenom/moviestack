@@ -23,7 +23,7 @@ export default function FilterList() {
 
   return (
     <div className="text-[var(--white1)] flex flex-col transition-all">
-      <button
+      {/* <button
         className="w-full font-black flex justify-between rounded-md items-center p-4 hover:backdrop-brightness-125"
         onClick={handleOpenMenu}
       >
@@ -36,16 +36,16 @@ export default function FilterList() {
             } transition-all left-1/2 -translate-x-1/2 absolute bg-[var(--white1)] w-[2.5px] h-full rounded-full`}
           />
         </div>
-      </button>
+      </button> */}
 
       <div
         className="overflow-hidden transition-all"
-        style={{
-          transitionDuration: "0.5s",
-          maxHeight: menuOpened
-            ? `${contentRef.current?.getBoundingClientRect().height}px`
-            : "0px",
-        }}
+        // style={{
+        //   transitionDuration: "0.5s",
+        //   maxHeight: menuOpened
+        //     ? `${contentRef.current?.getBoundingClientRect().height}px`
+        //     : "0px",
+        // }}
       >
         <div
           ref={contentRef}
