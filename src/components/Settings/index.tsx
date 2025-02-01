@@ -7,7 +7,7 @@ import "./styles.css";
 import FilterList from "../FilterList";
 import SortingSwitch from "../SortingSwitch";
 
-export default function SideBar() {
+export default function Settings() {
   const {
     completed,
     universe,
@@ -18,10 +18,7 @@ export default function SideBar() {
   return (
     <>
       {universe && (
-        <aside
-          className={`flex-col h-full
-            shadow-lg overflow-hidden`}
-        >
+        <aside className={`flex-col h-full overflow-hidden`}>
           <div className="h-full">
             <div className="h-full py-2">
               <div

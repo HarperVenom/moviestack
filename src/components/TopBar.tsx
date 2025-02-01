@@ -2,7 +2,7 @@
 import { TitlesContext } from "@/services/providers/TitlesProvider";
 import Image from "next/image";
 import React, { useContext, useState } from "react";
-import SideBar from "./SideBar";
+import Settings from "./Settings";
 import CrossIcon from "../../public/assets/cross-icon";
 
 export default function TopBar() {
@@ -68,7 +68,7 @@ export default function TopBar() {
         >
           <CrossIcon />
         </button>
-        <SideBar />
+        <Settings />
       </div>
     </div>
   );

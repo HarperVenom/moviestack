@@ -177,7 +177,7 @@ export default function Title({
 
       <div
         className="absolute top-0 w-full h-full bg-custom-primary flex 
-      justify-center items-center text-[var(--text)] select-none transition-all font-semibold"
+      justify-center items-center text-[var(--text)] select-none transition-all"
         style={{
           fontSize: `${width / 10}px`,
           transitionDuration: "0.5s",
@@ -185,7 +185,7 @@ export default function Title({
           pointerEvents: hidden ? "all" : "none",
         }}
       >
-        ?
+        <p className="opacity-50">?</p>
       </div>
     </div>
   );

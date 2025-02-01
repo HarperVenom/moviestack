@@ -2,8 +2,8 @@
 
 import React, { useContext, useEffect, useState } from "react";
 import TitleList from "./TitleList";
-import SideBar from "./SideBar";
-import Settings from "../../public/assets/settings";
+import Settings from "./Settings";
+import SettingsIcon from "../../public/assets/settings";
 import Hidden from "../../public/assets/hidden";
 import NotHidden from "../../public/assets/not-hidden";
 import { TitlesContext } from "@/services/providers/TitlesProvider";
@@ -29,28 +29,39 @@ export default function Universe() {
         <TitleList />
       </div>
 
-      {menuOpened ? (
-        <>
-          {/* Background */}
-          <div
-            className="fixed top-[4.5rem] bottom-[4.5rem] w-[95vw] max-w-[800px]
+      {/* Background */}
+      <div
+        className="fixed top-[4.5rem] bottom-[4.5rem] w-[95vw] max-w-[800px]
         bg-custom-primary3 mix-blend-multiply opacity-90
-        left-1/2 -translate-x-1/2 rounded-md"
-          />
-          {/* Blur */}
-          <div
-            className="fixed top-[4.5rem] bottom-[4.5rem] w-[95vw] max-w-[800px]
-        left-1/2 -translate-x-1/2 rounded-md"
-            style={{ backdropFilter: "blur(10px)" }}
-          />
-          <div
-            className="fixed top-16 bottom-16 w-[95vw] max-w-[800px] left-1/2
-         -translate-x-1/2 p-2"
-          >
-            <SideBar />
-          </div>
-        </>
-      ) : null}
+        left-[50%] -translate-x-[50%] rounded-md transition-all"
+        style={{
+          opacity: menuOpened ? "" : "0",
+          pointerEvents: menuOpened ? "all" : "none",
+          marginLeft: "calc((100vw - 100%)/2)",
+        }}
+      />
+      {/* Blur */}
+      <div
+        className="fixed top-[4.5rem] bottom-[4.5rem] w-[95vw] max-w-[800px]
+        left-[50%] -translate-x-[50%] rounded-md transition-all"
+        style={{
+          backdropFilter: "blur(10px)",
+          opacity: menuOpened ? "" : "0",
+          pointerEvents: menuOpened ? "all" : "none",
+          marginLeft: "calc((100vw - 100%)/2)",
+        }}
+      />
+      <div
+        className="fixed top-16 bottom-16 w-[95vw] max-w-[800px] left-1/2
+         -translate-x-1/2 p-2 transition-all"
+        style={{
+          opacity: menuOpened ? "" : "0",
+          pointerEvents: menuOpened ? "all" : "none",
+          marginLeft: "calc((100vw - 100%)/2)",
+        }}
+      >
+        <Settings />
+      </div>
 
       <div
         className="fixed left-0 bottom-0 w-full h-16 bg-custom-primary3
@@ -122,7 +133,7 @@ export default function Universe() {
             className="h-full rounded aspect-square p-1"
             style={{ backgroundColor: "var(--blue3)" }}
           >
-            <Settings fill="var(--text)" />
+            <SettingsIcon fill="var(--text)" />
           </button>
         </div>
       </div>
