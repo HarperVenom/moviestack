@@ -46,7 +46,7 @@ export default function TitleList() {
         }}
       >
         <Image
-          className="h-full object-cover saturate-[120%]"
+          className="h-full object-cover saturate-[130%]"
           src={universe?.banner_url || ""}
           alt=""
           width={((320 * containerWidth) / 320) * 2}

@@ -22,11 +22,11 @@ export default function Settings() {
           <div className="h-full">
             <div className="h-full py-2">
               <div
-                className="w-full small-scroll max-h-full
-             overflow-auto rounded-md cursor-default select-none"
+                className="w-full h-full small-scroll max-h-full
+             overflow-auto rounded-md cursor-default select-none flex flex-col"
               >
                 <FilterList />
-                <div className="w-full flex justify-center my-4">
+                <div className="w-full flex justify-center my-4 mt-auto">
                   <button
                     className="font-normal opacity-50 text-[var(--white1)] 
                   hover:underline hover:opacity-100"

@@ -20,7 +20,7 @@ export default function Universe() {
   return (
     <main className="flex-col relative w-full mx-auto">
       <div
-        className="w-[90vw] max-w-[700px] mx-auto relative"
+        className="w-[90vw] max-w-[620px] mx-auto relative"
         style={{
           marginTop: "min(calc((100vw - 90vw) / 2), 2rem)",
           marginBottom: "calc((100vw - 90vw) / 2)",

@@ -15,8 +15,8 @@ export default function UniverseLink({ data }: { data: UniverseType }) {
     >
       <div
         ref={cardRef}
-        className="bg-custom-primary"
-        style={{ boxShadow: "0 0 10px rgb(0 0 0 / 0.8)" }}
+        className="bg-custom-primary rounded-lg shadow-md 
+        shadow-black hover:shadow-[var(--white1)]"
       >
         <Link
           className=" text-lg sm:text-2xl w-full
@@ -24,14 +24,13 @@ export default function UniverseLink({ data }: { data: UniverseType }) {
           href={`/${data.id}`}
         >
           <Image
-            className="saturate-[1.3]"
+            className="saturate-[1.3] rounded-lg"
             src={data.banner_url}
             alt=""
             width={900}
             height={300}
             quality={100}
           ></Image>
-          <div className="p-4 ">{data.title}</div>
         </Link>
       </div>
     </div>
