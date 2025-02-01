@@ -22,9 +22,16 @@ export default function SideBar() {
           className={`flex-col h-full
             shadow-lg rounded-md overflow-hidden bg-[var(--blue3)]`}
         >
-          <div className="grow small-scroll overflow-auto overscroll-none">
-            <div className="flex-col px-2 py-4 gap-4 items-center justify-center">
-              {/* <div className="bg-[var(--blue4)] p-4 rounded-md">
+          <div className="small-scroll h-full">
+            <div className="h-full p-2">
+              <div
+                className="max-h-full
+             overflow-auto rounded-md cursor-default select-none"
+              >
+                <FilterList />
+              </div>
+            </div>
+            {/* <div className="bg-[var(--blue4)] p-4 rounded-md">
                 <div className="text-white font-black text-[1.3rem] w-full flex flex-col mb-4">
                   {universe.title}
                 </div>
@@ -33,14 +40,9 @@ export default function SideBar() {
                 </div>
               </div> */}
 
-              <div className="bg-[var(--blue4)] rounded-md cursor-default select-none">
-                <FilterList />
-              </div>
+            {/* <SortingSwitch /> */}
 
-              {/* <SortingSwitch /> */}
-
-              {/* <div className="bg-[var(--blue4)] rounded-md cursor-default select-none"></div> */}
-            </div>
+            {/* <div className="bg-[var(--blue4)] rounded-md cursor-default select-none"></div> */}
           </div>
 
           {/* <div

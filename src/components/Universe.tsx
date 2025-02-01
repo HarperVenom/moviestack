@@ -39,7 +39,9 @@ export default function Universe() {
       <div
         className="fixed bottom-0 w-full h-20 
       "
-        style={{ backdropFilter: "blur(10px)" }}
+        style={{
+          backdropFilter: "blur(10px)",
+        }}
       >
         <div
           className="m-auto max-w-[600px] w-full h-full flex 
@@ -74,7 +76,14 @@ export default function Universe() {
           </div>
 
           <button
-            onClick={() => setMenuOpened(!menuOpened)}
+            onClick={() => {
+              if (!menuOpened) {
+                document.body.style.overflow = "hidden";
+              } else {
+                document.body.style.overflow = "";
+              }
+              setMenuOpened(!menuOpened);
+            }}
             className="h-full rounded aspect-square p-1"
             style={{ backgroundColor: "var(--blue3)" }}
           >

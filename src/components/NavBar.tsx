@@ -7,7 +7,7 @@ import Logo from "./Logo";
 
 export default function NavBar() {
   return (
-    <div className="top-0 h-16 w-full">
+    <div className="left-0 top-0 h-16 w-full">
       {/* Background */}
       <div
         className="fixed z-[1] left-0 w-full h-16 

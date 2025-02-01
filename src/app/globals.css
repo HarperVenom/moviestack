@@ -18,6 +18,13 @@
   --text: #8787fb;
 }
 
+html {
+  /* margin-left: calc(100vw - 100%); */
+  /* .fixed {
+    margin-left: calc(100vw - 100%);
+  } */
+}
+
 body {
   background-color: var(--blue1);
 }
