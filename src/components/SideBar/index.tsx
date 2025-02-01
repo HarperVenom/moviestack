@@ -20,7 +20,7 @@ export default function SideBar() {
       {universe && (
         <aside
           className={`flex-col h-full
-            shadow-lg rounded-md overflow-hidden bg-[var(--blue3)]`}
+            shadow-lg overflow-hidden`}
         >
           <div className="small-scroll h-full">
             <div className="h-full p-2">

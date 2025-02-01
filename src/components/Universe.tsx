@@ -17,27 +17,30 @@ export default function Universe() {
   return (
     <main className="flex-col relative w-full mx-auto">
       <div
-        className="w-[90%] max-w-[700px] mx-auto relative"
+        className="w-[90vw] max-w-[700px] mx-auto relative"
         style={{
-          marginTop: "min(calc((100% - 90%) / 2), 2rem)",
-          marginBottom: "calc((100% - 90%) / 2)",
+          marginTop: "min(calc((100vw - 90vw) / 2), 2rem)",
+          marginBottom: "calc((100vw - 90vw) / 2)",
         }}
       >
         <TitleList />
       </div>
 
       {menuOpened ? (
-        <div className="fixed top-16 bottom-20 w-full p-2 max-w-[700px] left-1/2 -translate-x-1/2">
+        <div
+          className="fixed top-16 bottom-16 w-full max-w-[700px] left-1/2
+         -translate-x-1/2"
+        >
           <SideBar />
         </div>
       ) : null}
 
       <div
-        className="fixed bottom-0 w-full h-20 bg-custom-primary3
+        className="fixed left-0 bottom-0 w-full h-16 bg-custom-primary3
       mix-blend-multiply opacity-90"
       ></div>
       <div
-        className="fixed bottom-0 w-full h-20 
+        className="fixed left-0 bottom-0 w-screen h-16 
       "
         style={{
           backdropFilter: "blur(10px)",
@@ -63,7 +66,7 @@ export default function Universe() {
               }}
             ></div>
             <p
-              className="font-bold text-3xl w-full h-full
+              className="font-bold text-2xl w-full h-full
           flex justify-center items-center mix-blend-difference"
               style={{ color: "var(--white1)" }}
             >
