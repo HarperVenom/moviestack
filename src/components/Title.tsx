@@ -158,7 +158,7 @@ export default function Title({
                 style={{ transitionDuration: "0.5s" }}
               >
                 <div
-                  className={`w-full h-full transition-all flex justify-center items-end`}
+                  className={`w-[90%] h-full transition-all flex justify-center items-end`}
                   style={{
                     width: `${squareWidth}px`,
                     height: `${squareWidth}px`,

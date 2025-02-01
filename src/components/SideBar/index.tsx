@@ -22,13 +22,22 @@ export default function SideBar() {
           className={`flex-col h-full
             shadow-lg overflow-hidden`}
         >
-          <div className="small-scroll h-full">
-            <div className="h-full p-2">
+          <div className="h-full">
+            <div className="h-full py-2">
               <div
-                className="max-h-full
+                className="w-full small-scroll max-h-full
              overflow-auto rounded-md cursor-default select-none"
               >
                 <FilterList />
+                <div className="w-full flex justify-center my-4">
+                  <button
+                    className="font-normal opacity-50 text-[var(--white1)] 
+                  hover:underline hover:opacity-100"
+                    onClick={resetTitles}
+                  >
+                    Reset the progress
+                  </button>
+                </div>
               </div>
             </div>
             {/* <div className="bg-[var(--blue4)] p-4 rounded-md">
@@ -68,12 +77,7 @@ export default function SideBar() {
                 }}
               ></div>
             </div>
-            <button
-              className="font-normal opacity-50 text-[var(--white1)] hover:underline hover:opacity-100"
-              onClick={resetTitles}
-            >
-              Reset the progress
-            </button>
+            <
           </div> */}
         </aside>
       )}

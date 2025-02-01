@@ -20,9 +20,6 @@
 
 html {
   margin-left: calc(100vw - 100%);
-  /* .fixed {
-    margin-left: calc(100vw - 100%);
-  } */
 }
 
 body {

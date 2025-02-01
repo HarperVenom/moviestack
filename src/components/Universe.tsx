@@ -27,12 +27,26 @@ export default function Universe() {
       </div>
 
       {menuOpened ? (
-        <div
-          className="fixed top-16 bottom-16 w-full max-w-[700px] left-1/2
-         -translate-x-1/2"
-        >
-          <SideBar />
-        </div>
+        <>
+          {/* Background */}
+          <div
+            className="fixed top-[4.5rem] bottom-[4.5rem] w-[95vw] max-w-[800px]
+        bg-custom-primary3 mix-blend-multiply opacity-90
+        left-1/2 -translate-x-1/2 rounded-md"
+          />
+          {/* Blur */}
+          <div
+            className="fixed top-[4.5rem] bottom-[4.5rem] w-[95vw] max-w-[800px]
+        left-1/2 -translate-x-1/2 rounded-md"
+            style={{ backdropFilter: "blur(10px)" }}
+          />
+          <div
+            className="fixed top-16 bottom-16 w-[95vw] max-w-[800px] left-1/2
+         -translate-x-1/2 p-2"
+          >
+            <SideBar />
+          </div>
+        </>
       ) : null}
 
       <div
@@ -68,7 +82,9 @@ export default function Universe() {
             <p
               className="font-bold text-2xl w-full h-full
           flex justify-center items-center mix-blend-difference"
-              style={{ color: "var(--white1)" }}
+              style={{
+                color: "var(--white1)",
+              }}
             >
               {`${Math.round(
                 filteredTitles.length == 0
