@@ -17,6 +17,9 @@ type ContextProps = {
   bannedTypeFilters: string[];
   switchAllFilters: (active: boolean) => void;
   checkFilter: (filter: string, kind: "branch" | "type") => void;
+  isHidden: boolean;
+  setIsHidden: (isHidden: boolean) => void;
+  currentTitle: string;
 };
 
 export const TitlesContext = createContext<ContextProps>({
@@ -32,6 +35,9 @@ export const TitlesContext = createContext<ContextProps>({
   bannedTypeFilters: [],
   switchAllFilters: () => {},
   checkFilter: () => {},
+  isHidden: false,
+  setIsHidden: () => {},
+  currentTitle: "",
 });
 
 export default function TitlesProvider({
@@ -55,6 +61,9 @@ export default function TitlesProvider({
   const [completedLoaded, setCompletedLoaded] = useState(false);
   const [filtersLoaded, setFiltersLoaded] = useState(false);
 
+  const [currentTitle, setCurrentTitle] = useState<string>("");
+  const [isHidden, setIsHidden] = useState<boolean>(true);
+
   useEffect(() => {
     const savedCompleted = localStorage.getItem(`completed ${universe?.id}`);
     if (savedCompleted) {
@@ -74,6 +83,11 @@ export default function TitlesProvider({
     );
     if (savedTypeFilters) {
       setBannedTypeFilters(JSON.parse(savedTypeFilters));
+    }
+
+    const savedIsHidden = localStorage.getItem(`isHidden ${universe?.id}`);
+    if (savedIsHidden) {
+      setIsHidden(!!JSON.parse(savedIsHidden));
     }
 
     setFiltersLoaded(true);
@@ -109,6 +123,11 @@ export default function TitlesProvider({
   }, [completed, universe, completedLoaded]);
 
   useEffect(() => {
+    if (!universe || !completedLoaded) return;
+    localStorage.setItem(`isHidden ${universe?.id}`, JSON.stringify(isHidden));
+  }, [universe, isHidden, completedLoaded]);
+
+  useEffect(() => {
     if (!universe || !filtersLoaded) return;
     localStorage.setItem(
       `branchFilters ${universe?.id}`,
@@ -123,6 +142,15 @@ export default function TitlesProvider({
       JSON.stringify(bannedTypeFilters)
     );
   }, [bannedTypeFilters, universe, filtersLoaded]);
+
+  useEffect(() => {
+    for (let i = 0; i < filteredTitles.length; i++) {
+      const title = filteredTitles[i];
+      if (completed.includes(title.id)) continue;
+      setCurrentTitle(title.id);
+      break;
+    }
+  }, [filteredTitles, completed]);
 
   function checkTitle(id: string) {
     if (completed.includes(id)) {
@@ -179,6 +207,9 @@ export default function TitlesProvider({
         bannedTypeFilters,
         switchAllFilters,
         checkFilter,
+        isHidden,
+        setIsHidden,
+        currentTitle,
       }}
     >
       {children}

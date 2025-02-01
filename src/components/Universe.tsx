@@ -4,10 +4,13 @@ import React, { useContext, useEffect, useState } from "react";
 import TitleList from "./TitleList";
 import SideBar from "./SideBar";
 import Settings from "../../public/assets/settings";
+import Hidden from "../../public/assets/hidden";
+import NotHidden from "../../public/assets/not-hidden";
 import { TitlesContext } from "@/services/providers/TitlesProvider";
 
 export default function Universe() {
-  const { completed, filteredTitles } = useContext(TitlesContext);
+  const { completed, filteredTitles, isHidden, setIsHidden } =
+    useContext(TitlesContext);
   const [menuOpened, setMenuOpened] = useState(false);
 
   const filteredCompleted = completed.filter((id) =>
@@ -64,13 +67,26 @@ export default function Universe() {
           className="m-auto max-w-[600px] w-full h-full flex 
         items-center p-3 px-4 justify-center gap-2"
         >
-          <div
-            className="w-full h-full relative rounded overflow-hidden"
+          <button
+            onClick={() => setIsHidden(!isHidden)}
+            className="h-full rounded aspect-square p-1"
             style={{ backgroundColor: "var(--blue3)" }}
           >
+            {isHidden ? (
+              <NotHidden fill="var(--text)" />
+            ) : (
+              <Hidden fill="var(--text)" />
+            )}
+          </button>
+
+          <div
+            className="w-full h-full relative rounded overflow-hidden"
+            // style={{ backgroundColor: "var(--blue1)" }}
+          >
             <div
-              className="absolute h-full bg-white transition-all"
+              className="absolute h-full transition-all"
               style={{
+                backgroundColor: "var(--text)",
                 transitionDuration: "0.5s",
                 width: `${
                   filteredTitles.length == 0
@@ -83,7 +99,7 @@ export default function Universe() {
               className="font-bold text-2xl w-full h-full
           flex justify-center items-center mix-blend-difference"
               style={{
-                color: "var(--white1)",
+                color: "var(--text)",
               }}
             >
               {`${Math.round(
@@ -106,7 +122,7 @@ export default function Universe() {
             className="h-full rounded aspect-square p-1"
             style={{ backgroundColor: "var(--blue3)" }}
           >
-            <Settings fill="var(--white1)" />
+            <Settings fill="var(--text)" />
           </button>
         </div>
       </div>

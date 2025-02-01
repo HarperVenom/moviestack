@@ -32,11 +32,15 @@ export default function Title({
   position: number;
   width: number;
 }) {
-  const { completed, checkTitle } = useContext(TitlesContext);
+  const { completed, checkTitle, currentTitle, isHidden } =
+    useContext(TitlesContext);
   const [isCompleted, setIsCompleted] = useState(completed.includes(data.id));
 
   const size = width;
   const scale = size / initialWidth;
+
+  const hidden =
+    isHidden && !(completed.includes(data.id) || currentTitle === data.id);
 
   useEffect(() => {
     setIsCompleted(completed.includes(data.id));
@@ -53,7 +57,6 @@ export default function Title({
         transition: "transform 0.6s ease, filter 0.6s ease",
       }}
     >
-      {/* TILTING CONTAINER */}
       <div className="w-full h-full overflow-hidden">
         {/* SCALED CARD */}
         <div
@@ -170,6 +173,19 @@ export default function Title({
             </button>
           </div>
         </div>
+      </div>
+
+      <div
+        className="absolute top-0 w-full h-full bg-custom-primary flex 
+      justify-center items-center text-[var(--text)] select-none transition-all font-semibold"
+        style={{
+          fontSize: `${width / 10}px`,
+          transitionDuration: "0.5s",
+          opacity: hidden ? "1" : "0",
+          pointerEvents: hidden ? "all" : "none",
+        }}
+      >
+        ?
       </div>
     </div>
   );
