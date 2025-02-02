@@ -63,7 +63,7 @@ export default function TitlesProvider({
   const [filtersLoaded, setFiltersLoaded] = useState(false);
 
   const [currentTitle, setCurrentTitle] = useState<string>("");
-  const [isHidden, setIsHidden] = useState<boolean>(false);
+  const [isHidden, setIsHidden] = useState<boolean>(true);
 
   useEffect(() => {
     const savedCompleted = localStorage.getItem(`completed ${universe?.id}`);
@@ -89,6 +89,8 @@ export default function TitlesProvider({
     const savedIsHidden = localStorage.getItem(`isHidden ${universe?.id}`);
     if (savedIsHidden) {
       setIsHidden(!!JSON.parse(savedIsHidden));
+    } else {
+      setIsHidden(false);
     }
 
     setFiltersLoaded(true);
