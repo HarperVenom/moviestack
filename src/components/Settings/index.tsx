@@ -2,18 +2,14 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { TitlesContext } from "@/services/providers/TitlesProvider";
-import { calculateTotalDuration } from "@/utils/calculateTotalDuration";
+import { calculateTotalDurationFormatted } from "@/utils/calculateTotalDuration";
 import "./styles.css";
 import FilterList from "../FilterList";
 import SortingSwitch from "../SortingSwitch";
 
 export default function Settings() {
-  const {
-    completed,
-    universe,
-    filteredTitles: filteredtitles,
-    resetTitles,
-  } = useContext(TitlesContext);
+  const { completed, universe, filteredTitles, resetTitles } =
+    useContext(TitlesContext);
 
   return (
     <>
@@ -22,11 +18,37 @@ export default function Settings() {
           <div className="h-full">
             <div className="h-full py-2">
               <div
-                className="w-full h-full small-scroll max-h-full
-             overflow-auto rounded-md cursor-default select-none flex flex-col"
+                className="p-4 w-full h-full small-scroll max-h-full
+             overflow-auto rounded-md flex flex-col"
               >
+                <h1
+                  className="text-[var(--white1)] font-medium text-xl text-center 
+                mb-2"
+                >
+                  Filters
+                </h1>
                 <FilterList />
-                <div className="w-full flex justify-center my-4 mt-auto">
+
+                <div
+                  className="text-[var(--white1)] font-medium  
+                items-center mt-12 gap-4 flex flex-col"
+                >
+                  <div className="flex flex-col justify-center items-center ">
+                    <p>Total number of titles:</p>
+                    <div className="text-4xl p-1 text-white">
+                      {filteredTitles.length}
+                    </div>
+                  </div>
+
+                  <div className="flex flex-col justify-center items-center">
+                    <p>Total duration:</p>
+                    <div className="text-4xl p-1 text-white">
+                      {calculateTotalDurationFormatted(filteredTitles)}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="w-full flex justify-center pt-12 mt-auto">
                   <button
                     className="font-normal opacity-50 text-[var(--white1)] 
                   hover:underline hover:opacity-100"

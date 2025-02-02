@@ -2,6 +2,7 @@
 import { TitleType, UniverseType } from "@/lib/types";
 import { filterTitles } from "@/utils/filterTitles";
 import { getTitleFilters } from "@/utils/getTitleFilters";
+import { sortTitlesByRelease } from "@/utils/sortTitlesByRelease";
 import React, { createContext, useEffect, useState } from "react";
 
 type ContextProps = {
@@ -62,7 +63,7 @@ export default function TitlesProvider({
   const [filtersLoaded, setFiltersLoaded] = useState(false);
 
   const [currentTitle, setCurrentTitle] = useState<string>("");
-  const [isHidden, setIsHidden] = useState<boolean>(true);
+  const [isHidden, setIsHidden] = useState<boolean>(false);
 
   useEffect(() => {
     const savedCompleted = localStorage.getItem(`completed ${universe?.id}`);
@@ -144,8 +145,9 @@ export default function TitlesProvider({
   }, [bannedTypeFilters, universe, filtersLoaded]);
 
   useEffect(() => {
-    for (let i = 0; i < filteredTitles.length; i++) {
-      const title = filteredTitles[i];
+    const sorted = sortTitlesByRelease(filteredTitles);
+    for (let i = 0; i < sorted.length; i++) {
+      const title = sorted[i];
       if (completed.includes(title.id)) continue;
       setCurrentTitle(title.id);
       break;

@@ -16,7 +16,7 @@ export default function UniverseLink({ data }: { data: UniverseType }) {
       <div
         ref={cardRef}
         className="bg-custom-primary rounded-lg shadow-md 
-        shadow-black hover:shadow-[var(--white1)]"
+        shadow-black hover:shadow-[var(--text)]"
       >
         <Link
           className=" text-lg sm:text-2xl w-full

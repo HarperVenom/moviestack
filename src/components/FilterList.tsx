@@ -49,7 +49,7 @@ export default function FilterList() {
       >
         <div
           ref={contentRef}
-          className={`flex flex-col gap-4 p-4 overflow-hidden transition-all`}
+          className={`flex flex-col gap-4 overflow-hidden transition-all`}
         >
           <div>
             <h3 className="mb-2 font-medium">Type</h3>

@@ -6,5 +6,13 @@ export function calculateTotalDuration(titles: TitleType[]) {
   titles.forEach((title) => {
     totalMinutes += title.duration;
   });
+  return totalMinutes;
+}
+
+export function calculateTotalDurationFormatted(titles: TitleType[]) {
+  let totalMinutes = 0;
+  titles.forEach((title) => {
+    totalMinutes += title.duration;
+  });
   return formatTime(totalMinutes);
 }

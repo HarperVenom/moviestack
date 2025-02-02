@@ -7,8 +7,8 @@ export default async function Home() {
     <main className="w-full text-white py-4">
       <div className="flex-col m-auto max-w-[700px] p-4">
         <div
-          className="w-1/2 text-[var(--white1)] text-xl sm:text-3xl border-b-[2px] 
-      border-[var(--white1)] mb-8 p-1"
+          className="w-1/2 text-[var(--text)] text-xl sm:text-3xl border-b-[2px] 
+      border-[var(--text)] mb-8 p-1"
         >
           Choose watchlist:
         </div>

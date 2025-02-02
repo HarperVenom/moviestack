@@ -7,14 +7,35 @@ import SettingsIcon from "../../public/assets/settings";
 import Hidden from "../../public/assets/hidden";
 import NotHidden from "../../public/assets/not-hidden";
 import { TitlesContext } from "@/services/providers/TitlesProvider";
+import { calculateTotalDuration } from "@/utils/calculateTotalDuration";
 
 export default function Universe() {
   const { completed, filteredTitles, isHidden, setIsHidden } =
     useContext(TitlesContext);
   const [menuOpened, setMenuOpened] = useState(false);
 
+  useEffect(() => {
+    if (!menuOpened) {
+      document.body.style.overflow = "";
+    } else {
+      document.body.style.overflow = "hidden";
+    }
+  }, [menuOpened]);
+
   const filteredCompleted = completed.filter((id) =>
     filteredTitles.some((title) => title.id === id)
+  );
+
+  const totalDuration = calculateTotalDuration(filteredTitles);
+  const totalCompletedDuration = filteredCompleted.reduce(
+    (accumulator, currentId) => {
+      const title = filteredTitles.find((title) => title.id === currentId);
+      if (title && title.duration) {
+        return accumulator + title.duration;
+      }
+      return accumulator;
+    },
+    0
   );
 
   return (
@@ -90,10 +111,7 @@ export default function Universe() {
             )}
           </button>
 
-          <div
-            className="w-full h-full relative rounded overflow-hidden"
-            // style={{ backgroundColor: "var(--blue1)" }}
-          >
+          <div className="w-full h-full relative rounded overflow-hidden">
             <div
               className="absolute h-full transition-all"
               style={{
@@ -102,7 +120,7 @@ export default function Universe() {
                 width: `${
                   filteredTitles.length == 0
                     ? 0
-                    : (filteredCompleted.length / filteredTitles.length) * 100
+                    : (totalCompletedDuration / totalDuration) * 100
                 }%`,
               }}
             ></div>
@@ -116,20 +134,13 @@ export default function Universe() {
               {`${Math.round(
                 filteredTitles.length == 0
                   ? 0
-                  : (filteredCompleted.length / filteredTitles.length) * 100
+                  : (totalCompletedDuration / totalDuration) * 100
               )}%`}
             </p>
           </div>
 
           <button
-            onClick={() => {
-              if (!menuOpened) {
-                document.body.style.overflow = "hidden";
-              } else {
-                document.body.style.overflow = "";
-              }
-              setMenuOpened(!menuOpened);
-            }}
+            onClick={() => setMenuOpened(!menuOpened)}
             className="h-full rounded aspect-square p-1"
             style={{ backgroundColor: "var(--blue3)" }}
           >
