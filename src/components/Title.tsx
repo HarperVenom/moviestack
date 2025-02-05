@@ -70,9 +70,7 @@ export default function Title({
           {/* BANNER */}
           <Image
             className={`${
-              isCompleted
-                ? "brightness-75 grayscale"
-                : "brightness-95 grayscale-0"
+              isCompleted ? "brightness-[0.8]" : "brightness-95 grayscale-0"
             } transition-all absolute top-0 left-0 w-full h-full 
             z-[-1] select-none saturate-[1.3] `}
             src={data.banner_url}
