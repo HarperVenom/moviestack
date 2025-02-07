@@ -53,7 +53,7 @@ export default function Title({
       style={{
         width: `${size}px`,
         height: `${size / 4}px`,
-        filter: `brightness(${isCompleted ? 0.5 : 1})`,
+        filter: `brightness(${isCompleted ? 0.75 : 1})`,
         transition: "transform 0.6s ease, filter 0.6s ease",
       }}
     >
@@ -70,7 +70,7 @@ export default function Title({
           {/* BANNER */}
           <Image
             className={`${
-              isCompleted ? "brightness-[0.8]" : "brightness-95 grayscale-0"
+              isCompleted ? "brightness-75" : "brightness-95"
             } transition-all absolute top-0 left-0 w-full h-full 
             z-[-1] select-none saturate-[1.3] `}
             src={data.banner_url}
