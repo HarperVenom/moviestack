@@ -13,6 +13,7 @@ export default function TitleList() {
     bannedBranchFilters,
     bannedTypeFilters,
     resetTitles,
+    canShow,
   } = useContext(TitlesContext);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [containerWidth, setContainerWidth] = useState(0);

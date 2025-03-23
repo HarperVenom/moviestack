@@ -21,6 +21,7 @@ type ContextProps = {
   isHidden: boolean;
   setIsHidden: (isHidden: boolean) => void;
   currentTitle: string;
+  canShow: boolean;
 };
 
 export const TitlesContext = createContext<ContextProps>({
@@ -39,6 +40,7 @@ export const TitlesContext = createContext<ContextProps>({
   isHidden: false,
   setIsHidden: () => {},
   currentTitle: "",
+  canShow: false,
 });
 
 export default function TitlesProvider({
@@ -61,6 +63,7 @@ export default function TitlesProvider({
   const [completed, setCompleted] = useState<string[]>([]);
   const [completedLoaded, setCompletedLoaded] = useState(false);
   const [filtersLoaded, setFiltersLoaded] = useState(false);
+  const [bannedFiltersLoaded, setBannedFiltersLoaded] = useState(false);
 
   const [currentTitle, setCurrentTitle] = useState<string>("");
   const [isHidden, setIsHidden] = useState<boolean>(true);
@@ -71,36 +74,70 @@ export default function TitlesProvider({
       setCompleted(JSON.parse(savedCompleted));
     }
     setCompletedLoaded(true);
-
-    const savedBranchFilters = localStorage.getItem(
-      `branchFilters ${universe?.id}`
-    );
-    if (savedBranchFilters) {
-      setBannedBranchFilters(JSON.parse(savedBranchFilters));
-    }
-
-    const savedTypeFilters = localStorage.getItem(
-      `typeFilters ${universe?.id}`
-    );
-    if (savedTypeFilters) {
-      setBannedTypeFilters(JSON.parse(savedTypeFilters));
-    }
-
-    const savedIsHidden = localStorage.getItem(`isHidden ${universe?.id}`);
-    if (savedIsHidden) {
-      setIsHidden(!!JSON.parse(savedIsHidden));
-    } else {
-      setIsHidden(false);
-    }
-
-    setFiltersLoaded(true);
   }, [universe]);
+
+  // Obtain filters from the link
+  useEffect(() => {
+    if (!filtersLoaded || !completedLoaded) return; // Wait until filters are loaded
+
+    const params = new URLSearchParams(window.location.search);
+
+    // Get selected filters from URL (those that are NOT banned)
+    const allowedBranches = params.get("branches")?.split(",") || [];
+    const allowedTypes = params.get("types")?.split(",") || [];
+
+    // Banned filters are those in the full list but NOT in the URL
+    // If there are no filters in the URL, do not modify the banned filters
+    if (allowedBranches.length > 0) {
+      setBannedBranchFilters(
+        branchFilters.filter((b) => !allowedBranches.includes(b))
+      );
+    }
+
+    if (allowedTypes.length > 0) {
+      setBannedTypeFilters(
+        typeFilters.filter((t) => !allowedTypes.includes(t))
+      );
+    }
+
+    setIsHidden(params.get("hidden") !== "false"); // Default to true if missing
+
+    setBannedFiltersLoaded(true);
+  }, [filtersLoaded, completedLoaded, branchFilters, typeFilters]);
 
   useEffect(() => {
     setFilteredTitles(
       filterTitles(titles, bannedBranchFilters, bannedTypeFilters)
     );
   }, [titles, bannedBranchFilters, bannedTypeFilters]);
+
+  // Update the link from filters
+  useEffect(() => {
+    if (!bannedFiltersLoaded) return;
+
+    const params = new URLSearchParams();
+
+    // Filter out banned filters
+    const allowedBranches = branchFilters.filter(
+      (branch) => !bannedBranchFilters.includes(branch)
+    );
+    const allowedTypes = typeFilters.filter(
+      (type) => !bannedTypeFilters.includes(type)
+    );
+
+    params.set("branches", allowedBranches.join(","));
+    params.set("types", allowedTypes.join(","));
+    params.set("hidden", isHidden.toString());
+
+    window.history.replaceState(null, "", `?${params.toString()}`);
+  }, [
+    branchFilters,
+    typeFilters,
+    bannedBranchFilters,
+    bannedTypeFilters,
+    isHidden,
+    bannedFiltersLoaded,
+  ]);
 
   useEffect(() => {
     const branchFilterSet = new Set<string>();
@@ -115,6 +152,8 @@ export default function TitlesProvider({
       typeFilterSet.add(title.type);
     });
     setTypeFilters(Array.from(typeFilterSet).sort());
+
+    setFiltersLoaded(true);
   }, [titles]);
 
   useEffect(() => {
@@ -124,27 +163,6 @@ export default function TitlesProvider({
       JSON.stringify(completed)
     );
   }, [completed, universe, completedLoaded]);
-
-  useEffect(() => {
-    if (!universe || !completedLoaded) return;
-    localStorage.setItem(`isHidden ${universe?.id}`, JSON.stringify(isHidden));
-  }, [universe, isHidden, completedLoaded]);
-
-  useEffect(() => {
-    if (!universe || !filtersLoaded) return;
-    localStorage.setItem(
-      `branchFilters ${universe?.id}`,
-      JSON.stringify(bannedBranchFilters)
-    );
-  }, [bannedBranchFilters, universe, filtersLoaded]);
-
-  useEffect(() => {
-    if (!universe || !filtersLoaded) return;
-    localStorage.setItem(
-      `typeFilters ${universe?.id}`,
-      JSON.stringify(bannedTypeFilters)
-    );
-  }, [bannedTypeFilters, universe, filtersLoaded]);
 
   useEffect(() => {
     const sorted = sortTitlesByRelease(filteredTitles);
@@ -214,6 +232,7 @@ export default function TitlesProvider({
         isHidden,
         setIsHidden,
         currentTitle,
+        canShow: bannedFiltersLoaded,
       }}
     >
       {children}

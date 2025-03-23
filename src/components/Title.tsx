@@ -32,7 +32,7 @@ export default function Title({
   position: number;
   width: number;
 }) {
-  const { completed, checkTitle, currentTitle, isHidden } =
+  const { completed, checkTitle, currentTitle, isHidden, canShow } =
     useContext(TitlesContext);
   const [isCompleted, setIsCompleted] = useState(completed.includes(data.id));
 
@@ -40,7 +40,8 @@ export default function Title({
   const scale = size / initialWidth;
 
   const hidden =
-    isHidden && !(completed.includes(data.id) || currentTitle === data.id);
+    !canShow ||
+    (isHidden && !(completed.includes(data.id) || currentTitle === data.id));
 
   useEffect(() => {
     setIsCompleted(completed.includes(data.id));
